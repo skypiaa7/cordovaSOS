@@ -1,0 +1,20 @@
+#deviceready.ready .event.listening {
+    display: none;
+}
+
+#deviceready.ready .event.received {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.display {
+    display: block;
+}
+
+.sizeincrease {
+    padding-top: 35%;
+    padding-bottom: 35%;
+}

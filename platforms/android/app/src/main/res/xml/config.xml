@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="io.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="Permissions">
+        <param name="android-package" value="com.android.plugins.Permissions" />
+    </feature>
+    <feature name="File">
+        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
+        <param name="onload" value="true" />
+    </feature>
+    <allow-navigation href="cdvfile:*" />
+    <feature name="Flashlight">
+        <param name="android-package" value="nl.xservices.plugins.Flashlight" />
+    </feature>
+    <feature name="Geolocation">
+        <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
+    </feature>
+    <feature name="Media">
+        <param name="android-package" value="org.apache.cordova.media.AudioHandler" />
+    </feature>
+    <feature name="SMS">
+        <param name="android-package" value="com.rjfun.cordova.sms.SMSPlugin" />
+    </feature>
+    <feature name="Sms">
+        <param name="android-package" value="com.cordova.plugins.sms.Sms" />
+    </feature>
+    <feature name="CallNumber">
+        <param name="android-package" value="mx.ferreyra.callnumber.CFCallNumber" />
+    </feature>
+    <feature name="Fingerprint">
+        <param name="android-package" value="de.niklasmerz.cordova.biometric.Fingerprint" />
+    </feature>
+    <platform name="android">
+        <preference name="AndroidXEnabled" value="true" />
+    </platform>
+    <name>SOS</name>
+    <description>Sample Apache Cordova App</description>
+    <author email="dev@cordova.apache.org" href="https://cordova.apache.org">
+        Apache Cordova Team
+    </author>
+    <content src="index.html" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <resource-file src="res/values/colors.xml" target="/app/src/main/res/values/colors.xml" />
+    <icon background="@color/background" density="mdpi" foreground="res/android/mipmap-mdpi/ic_launcher_foreground.png" />
+    <icon background="@color/background" density="hdpi" foreground="res/android/mipmap-hdpi/ic_launcher_foreground.png" />
+    <icon background="@color/background" density="xhdpi" foreground="res/android/mipmap-xhdpi/ic_launcher_foreground.png" />
+    <icon background="@color/background" density="xxhdpi" foreground="res/android/mipmap-xxhdpi/ic_launcher_foreground.png" />
+    <icon background="@color/background" density="xxxhdpi" foreground="res/android/mipmap-xxxhdpi/ic_launcher_foreground.png" />
+    <preference name="loglevel" value="DEBUG" />
+</widget>

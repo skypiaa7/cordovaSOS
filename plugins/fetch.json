@@ -1,0 +1,82 @@
+{
+  "cordova-plugin-flashlight": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-flashlight"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-compat": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-compat@^1.2.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-geolocation": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-geolocation@4.1.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-media": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-media@5.0.3"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-file": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-file@^6.0.0"
+    },
+    "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-sms-plugin": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-sms-plugin@^1.0.1"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-android-permissions": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-android-permissions"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-sms": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-sms"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-call-number": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-call-number"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-fingerprint-aio": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-fingerprint-aio"
+    },
+    "is_top_level": true,
+    "variables": {}
+  }
+}
