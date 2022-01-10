@@ -204,6 +204,7 @@ function option() {
     }, successCallback, errorCallback);
 
     function successCallback() {
+        console.log("marche bien");
         alert("vous êtes bien authentifié");
         window.location.href = "option.html";
     }
