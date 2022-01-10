@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initiaal-scale=1, width=device-width, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+
+
+    <title>Hello World</title>
+</head>
+
+<body>
+    <div id="deviceready">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <!-- Brand/logo -->
+            <a class="navbar-brand" href="#">
+                <img src="img/sos.png" alt="logo" style="width:40px;"> ALERT
+            </a>
+
+            <!-- Links -->
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" id="option" href="option.html" onclick="option();">OPTION</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="app">
+            <div class="row">
+                <div class="col text-center ml-3 mr-3 mt-4 mb-4 pt-1 pb-1 ">
+                    <input class="btn btn-danger btn-lg btn-block" id="agression" type="image" src="img/agression.png"
+                        value="agression" />
+                </div>
+            </div>
+            </br>
+            <div class="row">
+                <div class="col text-center ml-3 ">
+                    <input class="btn btn-secondary btn-lg btn-block pt-3 pb-3" id="police" type="image"
+                        src="img/police.png" value="police" />
+                </div>
+                <div class="col text-center mr-3 ">
+                    <input class="btn btn-secondary btn-lg btn-block pt-3 pb-3" id="pompier" type="image"
+                        src="img/sapeur-pompier.png" value="pompier" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center ml-3 mt-3">
+                    <input class="btn btn-secondary btn-lg btn-block pt-3 pb-3" id="perdu" type="image"
+                        src="img/carte.png" value="perdu" />
+                </div>
+                <div class="col text-center mr-3 mt-3">
+                    <input class="btn btn-secondary btn-lg btn-block pt-3 pb-3" id="samu" type="image"
+                        src="img/ambulance.png" value="samu" />
+                </div>
+            </div>
+
+            </br>
+
+        </div>
+        <script src="cordova.js"></script>
+        <script src="js/index.js"></script>
+        <script src="js/bootstrap.js"></script>
+
+    </div>
+</body>
+
+</html>
