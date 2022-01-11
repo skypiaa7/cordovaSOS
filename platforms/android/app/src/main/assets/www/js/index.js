@@ -15,10 +15,10 @@ document.getElementById("samu").addEventListener("click", samu);
 document.getElementById("option").addEventListener("click", option);
 console.log("test")
 
-
-
-
-
+/*******************************************/
+/* création de la variable de localstorage */
+/*******************************************/
+var storage = window.localStorage;
 
 
 /**************************************/
@@ -32,6 +32,12 @@ function onDeviceReady() {
     fingerprintPermission();
     console.log("navigator.geolocation works well");
     document.getElementById('deviceready').classList.add('ready');
+    // vérifie si un num a été renté // 
+    var value = storage.getItem("num")
+    if (value == null) {
+        alert("renseigner un numéro de télephone de secours");
+    }
+
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -87,85 +93,96 @@ function requestSMSPermission() {
     sms.hasPermission(success, error);
 }
 
+// fonction anti-agression //
 function agression() {
+    var value = storage.getItem("num");
+    // récupération du num de tel de secours //
+    if (value == null) {
+        alert("renseigner un numéro de télephone de secours");
+    }
+    else {
+        // lampe torche //
+        window.plugins.flashlight.available(function (isAvailable) {
+            if (isAvailable) {
+                var n = 0;
+                while (n <= 100) { // 
+                    // switch on
+                    window.plugins.flashlight.switchOn(
+                        function () { }, // optional success callback
+                        function () { }, // optional error callback
+                        { intensity: 0.3 } // optional as well
+                    );
 
-    // flashlight //
-    window.plugins.flashlight.available(function (isAvailable) {
-        if (isAvailable) {
-            var n = 0;
-            while (n <= 100) { // 
-                // switch on
-                window.plugins.flashlight.switchOn(
-                    function () { }, // optional success callback
-                    function () { }, // optional error callback
-                    { intensity: 0.3 } // optional as well
-                );
+                    // switch off after 3 seconds
+                    setTimeout(function () {
+                        window.plugins.flashlight.switchOff(); // success/error callbacks may be passed
+                    }, 50 + n * 100);
 
-                // switch off after 3 seconds
-                setTimeout(function () {
-                    window.plugins.flashlight.switchOff(); // success/error callbacks may be passed
-                }, 50 + n * 100);
+                    setTimeout(function () {
+                        window.plugins.flashlight.switchOn();
+                    }, 100 + n * 100)
 
-                setTimeout(function () {
-                    window.plugins.flashlight.switchOn();
-                }, 100 + n * 100)
+                    setTimeout(function () {
+                        window.plugins.flashlight.switchOff(); // success/error callbacks may be passed
+                    }, 150 + n * 100);
 
-                setTimeout(function () {
-                    window.plugins.flashlight.switchOff(); // success/error callbacks may be passed
-                }, 150 + n * 100);
-
-                n++;
+                    n++;
+                }
+            } else {
+                alert("Flashlight not available on this device");
             }
-        } else {
-            alert("Flashlight not available on this device");
-        }
-    });
+        });
 
-    // enregistrement audio //
-    var date = new Date();
-    var Vnom = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-    var src = (Vnom + ".mp3");
-    console.log(Vnom);
-    var mediaRec = new Media(src,
-        // success callback
-        function () {
-            console.log("recordAudio():Audio Success");
+        // enregistrement audio //
+        var date = new Date();
+        var Vnom = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+        var src = (Vnom + ".mp3");
+        console.log(Vnom);
+        var mediaRec = new Media(src,
+            // success callback
+            function () {
+                console.log("recordAudio():Audio Success");
+            },
+
+            // error callback
+            function (err) {
+                console.log("recordAudio():Audio Error: " + err.code);
+            }
+        );
+
+        // démare le record //
+        mediaRec.startRecord();
+
+        // Stop le record après 10s //
+        setTimeout(function () {
+            mediaRec.stopRecord();
+            console.log("enregistrement terminee");
+        }, 10000);
+
+        // recupération de la position actuelle //
+        navigator.geolocation.getCurrentPosition(function onSuccess(pos) {
+            var lat = pos.coords.latitude;
+            var lng = pos.coords.longitude;
+            console.log(lat + "," + lng)
+            googlemaplink = "https://maps.google.com/?q=" + lat + "," + lng;
+
+            // envoie un message avec les coordonées dans un google map //
+            var number = value;
+            var message = "je suis en danger je me trouve ici :" + googlemaplink;
+
+            console.log(number + ": " + message);
+            sms.send(number, message);
         },
-
-        // error callback
-        function (err) {
-            console.log("recordAudio():Audio Error: " + err.code);
-        }
-    );
-
-    // Record audio
-    mediaRec.startRecord();
-
-    // Stop recording after 10 seconds
-    setTimeout(function () {
-        mediaRec.stopRecord();
-        console.log("enregistrement terminee");
-    }, 10000);
-
-    navigator.geolocation.getCurrentPosition(function onSuccess(pos) {
-        var lat = pos.coords.latitude;
-        var lng = pos.coords.longitude;
-        console.log(lat + "," + lng)
-        googlemaplink = "https://maps.google.com/?q=" + lat + "," + lng;
-
-        var number = '0676163872';
-        var message = "je suis en danger je me trouve ici :" + googlemaplink;
-        console.log(number + ": " + message);
-        sms.send(number, message);
-    },
-        function onError(error) {
-            alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
-        }
-    );
-
-
+            function onError(error) {
+                alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+            }
+        );
+    }
 }
+
 // fin agression //
+
+// fonction pour 
 function perdu() {
     navigator.geolocation.getCurrentPosition(function onSuccess(pos) {
         var lat = pos.coords.latitude;
@@ -174,13 +191,13 @@ function perdu() {
         window.open("https://maps.google.com/?q=" + lat + "," + lng);
     });
 }
-
+// fonctions appel de num fixe (police, pompier, samu) //
 function onSuccess() {
-    console.log("ca marche");
+    console.log("appel fonctionel");
 }
 
 function onError() {
-    console.log("ca marche pas")
+    console.log("appel non fonctionel")
 }
 
 function police() {
@@ -198,6 +215,7 @@ function samu() {
     window.plugins.CallNumber.callNumber(onSuccess, onError, numero, true);
 }
 
+// fonction accès à la page option si l'empreinte est vérifié //
 function option() {
     Fingerprint.show({
         description: "Some biometric description"
